@@ -217,22 +217,6 @@ public class WESINC_numpad extends AppCompatActivity {
             }
         });
 
-        final Button button_delete = (Button)findViewById(R.id.button_delete);
-        button_delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(tempMessage){
-                    textView.setText("");
-                }
-                if (textView.length() > 1){
-                    textView.setText(textView.getText().subSequence(0, textView.length() - 1));
-                }
-                else if(textView.length() == 1){
-                    textView.setText("");
-                }
-            }
-        });
-
         final Button button_payment = (Button)findViewById(R.id.button_payment);
         button_payment.setOnClickListener(new View.OnClickListener() {
 
@@ -246,6 +230,11 @@ public class WESINC_numpad extends AppCompatActivity {
 
                 if(tempMessage){
                     textView.setText("");
+                    return;
+                }
+                if(textView.getText().toString().charAt(textView.length() - 1) == 120){
+                    textView.setText("Invalid Input");
+                    tempMessage = true;
                     return;
                 }
                 //Incrementing to numbers into the linkedlist
@@ -287,7 +276,12 @@ public class WESINC_numpad extends AppCompatActivity {
                 }
                 else{
                     totalPayment += additionalPayment;
-                    text_totalPayment.setText("$" + totalPayment);
+                    if(totalPayment * 10 - (int)(totalPayment * 10) == 0) {
+                        text_totalPayment.setText("$" + totalPayment + "0");
+                    }
+                    else{
+                        text_totalPayment.setText("$" + totalPayment);
+                    }
                     textView.setText("Number of Items x Price of Item");
                     tempMessage = true;
                 }
@@ -295,6 +289,23 @@ public class WESINC_numpad extends AppCompatActivity {
                 //The array of information needed to insert
                 Double[] information= {new Double(amount), new Double(price)};
                 paidLinkedList.add(information);
+            }
+        });
+
+        final Button button_delete = (Button)findViewById(R.id.button_delete);
+        button_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(tempMessage){
+                    textView.setText("");
+                }
+                if (textView.length() > 1){
+                    textView.setText(textView.getText().subSequence(0, textView.length() - 1));
+                    textView.setText("");
+                }
+                else if(textView.length() == 1){
+                    textView.setText("");
+                }
             }
         });
     }
