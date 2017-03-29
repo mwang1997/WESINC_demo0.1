@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.mark.wesinc_demo01.WESINC_numpad">
+
+
+    <TextView
+        android:layout_width="296dp"
+        android:layout_height="46dp"
+        android:gravity = "center"
+        android:text="Number of Items x Price of Item"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/textView"
+        app:layout_constraintVertical_bias="0.419" />
+
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="74dp"
+        android:layout_height="46dp"
+        android:text="9"
+        android:layout_marginRight="74dp"
+        app:layout_constraintRight_toRightOf="@+id/textView"
+        android:layout_marginTop="-9dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="74dp"
+        android:layout_height="46dp"
+        android:layout_marginRight="-4dp"
+        android:layout_marginTop="0dp"
+        android:text="8"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintRight_toLeftOf="@+id/button9" />
+
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="74dp"
+        android:layout_height="46dp"
+        android:layout_marginRight="-17dp"
+        android:layout_marginTop="-9dp"
+        android:text="7"
+        app:layout_constraintRight_toLeftOf="@+id/button8"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="74dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="-1dp"
+        android:text="6"
+        app:layout_constraintTop_toBottomOf="@+id/button9"
+        app:layout_constraintLeft_toRightOf="@+id/button5"
+        android:layout_marginLeft="-4dp" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="74dp"
+        android:layout_height="46dp"
+        android:text="5"
+        app:layout_constraintLeft_toRightOf="@+id/button4"
+        android:layout_marginLeft="-4dp"
+        android:layout_marginTop="-1dp"
+        app:layout_constraintTop_toBottomOf="@+id/button8" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="74dp"
+        android:layout_height="46dp"
+        android:layout_marginLeft="-4dp"
+        android:layout_marginTop="-1dp"
+        android:text="4"
+        app:layout_constraintLeft_toLeftOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/button7" />
+
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="74dp"
+        android:layout_height="46dp"
+        android:text="3"
+        android:layout_marginTop="-2dp"
+        app:layout_constraintTop_toBottomOf="@+id/button6"
+        app:layout_constraintLeft_toRightOf="@+id/button2"
+        android:layout_marginLeft="-4dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="74dp"
+        android:layout_height="46dp"
+        android:text="2"
+        app:layout_constraintLeft_toRightOf="@+id/button1"
+        android:layout_marginLeft="-4dp"
+        android:layout_marginTop="-2dp"
+        app:layout_constraintTop_toBottomOf="@+id/button5" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="74dp"
+        android:layout_height="46dp"
+        android:layout_marginLeft="-4dp"
+        android:text="1"
+        app:layout_constraintLeft_toLeftOf="@+id/textView"
+        android:layout_marginTop="-2dp"
+        app:layout_constraintTop_toBottomOf="@+id/button4" />
+
+    <Button
+        android:id="@+id/button0"
+        android:layout_width="148dp"
+        android:layout_height="46dp"
+        android:text="0"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/button1"
+        android:layout_marginTop="-8dp"
+        app:layout_constraintTop_toBottomOf="@+id/button1" />
+
+    <Button
+        android:id="@+id/button_decimal"
+        android:layout_width="74dp"
+        android:layout_height="46dp"
+        android:text="."
+        app:layout_constraintLeft_toRightOf="@+id/button0"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/button3" />
+
+    <Button
+        android:id="@+id/button_delete"
+        android:layout_width="74dp"
+        android:layout_height="92dp"
+        android:text="Delete"
+        android:layout_marginTop="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        android:layout_marginRight="-9dp"
+        app:layout_constraintRight_toRightOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/button_x"
+        android:layout_width="74dp"
+        android:layout_height="92dp"
+        android:layout_marginRight="-14dp"
+        android:text="X"
+        app:layout_constraintRight_toRightOf="@+id/textView"
+        android:layout_marginTop="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/button_delete" />
+
+    <Button
+        android:id="@+id/button_payment"
+        android:layout_width="296dp"
+        android:layout_height="46dp"
+        android:text="Add $X to Total"
+        android:layout_marginTop="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/button_x"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/textView"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="@+id/textView"
+        app:layout_constraintHorizontal_bias="0.0" />
+
+    <TextView
+        android:id="@+id/text_totalPayment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$0.00"
+        android:layout_marginBottom="56dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        android:layout_marginRight="130dp"
+        app:layout_constraintRight_toRightOf="@+id/textView"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="@+id/textView"
+        app:layout_constraintHorizontal_bias="1.0" />
+
+</android.support.constraint.ConstraintLayout>
