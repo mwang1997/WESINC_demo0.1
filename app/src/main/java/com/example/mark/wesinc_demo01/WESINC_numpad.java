@@ -301,7 +301,6 @@ public class WESINC_numpad extends AppCompatActivity {
                 }
                 if (textView.length() > 1){
                     textView.setText(textView.getText().subSequence(0, textView.length() - 1));
-                    textView.setText("");
                 }
                 else if(textView.length() == 1){
                     textView.setText("");
