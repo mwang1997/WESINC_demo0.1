@@ -177,4 +177,15 @@
         app:layout_constraintLeft_toLeftOf="@+id/textView"
         app:layout_constraintHorizontal_bias="1.0" />
 
+    <Button
+        android:id="@+id/button_clear"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        android:text="X"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent" />
+
 </android.support.constraint.ConstraintLayout>

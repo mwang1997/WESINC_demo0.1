@@ -217,6 +217,19 @@ public class WESINC_numpad extends AppCompatActivity {
             }
         });
 
+        final Button button_clear = (Button)findViewById(R.id.button_clear);
+        button_clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                totalPayment = 0.0;
+                paidLinkedList.clear();
+                text_totalPayment.setText("$0.00");
+                textView.setText("Number of Items x Price of Item");
+                tempMessage = true;
+                button_clear.setVisibility(View.GONE);
+            }
+        });
+
         final Button button_payment = (Button)findViewById(R.id.button_payment);
         button_payment.setOnClickListener(new View.OnClickListener() {
 
@@ -289,6 +302,7 @@ public class WESINC_numpad extends AppCompatActivity {
                 //The array of information needed to insert
                 Double[] information= {new Double(amount), new Double(price)};
                 paidLinkedList.add(information);
+                button_clear.setVisibility(View.VISIBLE);
             }
         });
 
@@ -307,5 +321,6 @@ public class WESINC_numpad extends AppCompatActivity {
                 }
             }
         });
+
     }
 }
