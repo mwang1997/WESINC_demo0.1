@@ -289,6 +289,14 @@ public class WESINC_numpad extends AppCompatActivity {
                 }
                 else{
                     totalPayment += additionalPayment;
+                    //Correcting for rounding errors
+                    if(totalPayment.doubleValue() * 100 - (int)(totalPayment * 100) >= .5){
+                        totalPayment = new Double(((int)(totalPayment.doubleValue() * 100) + 1) / 100.0);
+                    }
+                    else{
+                        totalPayment = new Double(((int)(totalPayment.doubleValue() * 100)) / 100.0);
+                    }
+
                     if(totalPayment * 10 - (int)(totalPayment * 10) == 0) {
                         text_totalPayment.setText("$" + totalPayment + "0");
                     }
