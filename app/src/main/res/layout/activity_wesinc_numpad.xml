@@ -155,7 +155,7 @@
         android:id="@+id/button_payment"
         android:layout_width="296dp"
         android:layout_height="46dp"
-        android:text="Add $X to Total"
+        android:text="Add to Total"
         android:layout_marginTop="0dp"
         app:layout_constraintTop_toBottomOf="@+id/button_x"
         android:layout_marginLeft="0dp"

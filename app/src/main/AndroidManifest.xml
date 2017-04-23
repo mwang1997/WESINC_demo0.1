@@ -16,7 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".WESINC_slider"></activity>
+        <activity android:name=".WESINC_slider" />
+        <activity
+            android:name=".WESINC_edit"
+            android:label="@string/title_activity_wesinc_edit"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

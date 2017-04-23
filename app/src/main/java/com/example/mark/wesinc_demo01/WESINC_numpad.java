@@ -1,18 +1,20 @@
 package com.example.mark.wesinc_demo01;
 
+import android.app.Application;
 import android.support.v7.app.AppCompatActivity;
 import android.content.*;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class WESINC_numpad extends AppCompatActivity {
     final Context context = this;
     boolean tempMessage = true;
-    Double totalPayment = 0.0;
-    Intent slider;
-    LinkedList<Double[]> paidLinkedList = new LinkedList<>();
+    double totalPayment = 0.0;
+    Intent slider = new Intent(context, WESINC_slider.class);
+    ArrayList<String> paidArrayList = new ArrayList<String>();
+    Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +31,7 @@ public class WESINC_numpad extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 totalPayment = 0.0;
-                paidLinkedList.clear();
+                paidArrayList.clear();
                 text_totalPayment.setText("$0.00");
                 textView.setText("Number of Items x Price of Item");
                 tempMessage = true;
@@ -88,18 +90,18 @@ public class WESINC_numpad extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                double amount = 0;
+                int amount = 0;
                 double price = 0;
                 double additionalPayment = 0;
                 boolean tempAmountBool = true;
                 boolean decimalBool = false;
 
-                if(tempMessage && paidLinkedList.isEmpty()){
+                if(tempMessage && paidArrayList.isEmpty()){
                     textView.setText("");
                     return;
                 }
-                else if(tempMessage && !paidLinkedList.isEmpty()){
-                    slider = new Intent(context, WESINC_slider.class);
+                else if(tempMessage && !paidArrayList.isEmpty()){
+                    slider.putStringArrayListExtra("paidArrayList", paidArrayList);
                     startActivity(slider);
                     return;
                 }
@@ -149,11 +151,11 @@ public class WESINC_numpad extends AppCompatActivity {
                 else{
                     totalPayment += additionalPayment;
                     //Correcting for rounding errors
-                    if(totalPayment.doubleValue() * 100 - (int)(totalPayment * 100) >= .5){
-                        totalPayment = new Double(((int)(totalPayment.doubleValue() * 100) + 1) / 100.0);
+                    if(totalPayment * 100 - (int)(totalPayment * 100) >= .5){
+                        totalPayment = ((int)(totalPayment * 100) + 1) / 100.0;
                     }
                     else{
-                        totalPayment = new Double(((int)(totalPayment.doubleValue() * 100)) / 100.0);
+                        totalPayment = ((int)(totalPayment * 100)) / 100.0;
                     }
 
                     if(totalPayment * 10 - (int)(totalPayment * 10) == 0) {
@@ -167,9 +169,21 @@ public class WESINC_numpad extends AppCompatActivity {
                     tempMessage = true;
                 }
 
+                //Rounding the price
+                if(price * 100 - (int)(price * 100) >= .5){
+                    price = ((int)(price * 100) + 1) / 100.0;
+                }
+                else{
+                    price = ((int)(price * 100)) / 100.0;
+                }
+
+                paidArrayList.add(amount + " x " + price);
+
+                button_payment.setText("Checkout");
+                textView.setText("Number of Items x Price of Item");
+                tempMessage = true;
+
                 //The array of information needed to insert
-                Double[] information= {new Double(amount), new Double(price)};
-                paidLinkedList.add(information);
                 button_clear.setVisibility(View.VISIBLE);
             }
         });
@@ -354,6 +368,5 @@ public class WESINC_numpad extends AppCompatActivity {
                 }
             }
         });
-
     }
 }
