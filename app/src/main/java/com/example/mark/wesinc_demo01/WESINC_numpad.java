@@ -9,17 +9,16 @@ import android.widget.*;
 import java.util.ArrayList;
 
 public class WESINC_numpad extends AppCompatActivity {
-    final Context context = this;
     boolean tempMessage = true;
     double totalPayment = 0.0;
-    Intent slider = new Intent(context, WESINC_slider.class);
+    Intent slider;
     ArrayList<String> paidArrayList = new ArrayList<String>();
-    Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wesinc_numpad);
+        final Context context = this;
 
         //Initializing current purchase
         final TextView textView = (TextView)findViewById(R.id.textView);
@@ -101,6 +100,7 @@ public class WESINC_numpad extends AppCompatActivity {
                     return;
                 }
                 else if(tempMessage && !paidArrayList.isEmpty()){
+                    slider = new Intent(context, WESINC_slider.class);
                     slider.putStringArrayListExtra("paidArrayList", paidArrayList);
                     startActivity(slider);
                     return;
