@@ -13,6 +13,9 @@ public class WESINC_numpad extends AppCompatActivity {
     double totalPayment = 0.0;
     Intent slider;
     ArrayList<String> paidArrayList = new ArrayList<String>();
+    ArrayList<Double> paidDoubleArrayList = new ArrayList<>();
+    final int SLIDER_REQUEST = 2;
+    int result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,7 +105,26 @@ public class WESINC_numpad extends AppCompatActivity {
                 else if(tempMessage && !paidArrayList.isEmpty()){
                     slider = new Intent(context, WESINC_slider.class);
                     slider.putStringArrayListExtra("paidArrayList", paidArrayList);
-                    startActivity(slider);
+                    slider.putExtra("total_payment", text_totalPayment.getText());
+                    startActivityForResult(slider, SLIDER_REQUEST);
+                    textView.setText(paidArrayList.get(result));
+                    totalPayment -= paidDoubleArrayList.get(result);
+                    //Correcting for rounding errors
+                    if(totalPayment * 100 - (int)(totalPayment * 100) >= .5){
+                        totalPayment = ((int)(totalPayment * 100) + 1) / 100.0;
+                    }
+                    else{
+                        totalPayment = ((int)(totalPayment * 100)) / 100.0;
+                    }
+
+                    if(totalPayment * 10 - (int)(totalPayment * 10) == 0) {
+                        text_totalPayment.setText("$" + totalPayment + "0");
+                    }
+                    else{
+                        text_totalPayment.setText("$" + totalPayment);
+                    }
+                    paidArrayList.remove(result);
+                    paidDoubleArrayList.remove(result);
                     return;
                 }
 
@@ -177,6 +199,7 @@ public class WESINC_numpad extends AppCompatActivity {
                     price = ((int)(price * 100)) / 100.0;
                 }
 
+                paidDoubleArrayList.add(amount * price);
                 paidArrayList.add(amount + " x " + price);
 
                 button_payment.setText("Checkout");
@@ -368,5 +391,12 @@ public class WESINC_numpad extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        if(requestCode == SLIDER_REQUEST && resultCode == RESULT_OK){
+            result = data.getIntExtra("result", -1);
+        }
     }
 }

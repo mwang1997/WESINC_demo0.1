@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">WESINC_demo 0.1</string>
     <string name="title_activity_wesinc_edit">WESINC_edit</string>
+    <string name="title_activity_wesinc_editing">WESINC_editing</string>
 </resources>

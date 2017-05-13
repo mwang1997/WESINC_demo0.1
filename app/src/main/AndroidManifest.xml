@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".WESINC_slider" />
+        <activity android:name=".WESINC_editing"></activity>
     </application>
 
 </manifest>
