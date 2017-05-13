@@ -12,13 +12,13 @@ public class WESINC_slider extends AppCompatActivity {
 
     final int EDITING_REQUEST = 1;
     String result = "";
+    final Intent data = this.getIntent();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wesinc_slider);
         final Context context = this;
-        final Intent data = this.getIntent();
 
         final String total_payment = this.getIntent().getStringExtra("total_payment");
 
@@ -45,9 +45,6 @@ public class WESINC_slider extends AppCompatActivity {
                     setResult(RESULT_OK, data);
                 }
                 else if(result.equals("edit")){
-                    data.putExtra("result", position);
-                    setResult(RESULT_OK, data);
-                    finish();
                 }
             }
         });
@@ -66,6 +63,11 @@ public class WESINC_slider extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         if(requestCode == EDITING_REQUEST && resultCode == RESULT_OK){
             result = data.getStringExtra("result");
+            if(result.equals("edit")){
+                this.data.putExtra("result", 0);
+                setResult(RESULT_OK, this.data);
+                finish();
+            }
         }
     }
 }
