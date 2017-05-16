@@ -121,9 +121,12 @@ public class WESINC_slider extends AppCompatActivity {
             }
             total_payment = total_payment_String;
             ((TextView)findViewById(R.id.textView_header)).setText(total_payment);
+
             if(data.getStringExtra("result").equals("delete")){
                 ((ArrayAdapter)((ListView)findViewById(R.id.listView_transactionSummary)).getAdapter()).remove(((ArrayAdapter)((ListView)findViewById(R.id.listView_transactionSummary)).getAdapter()).getItem(position));
                 slider.putExtra("arraylist", this.getItems());
+                slider.putExtra("total_payment", total_payment_String);
+                slider.putExtra("arrayitem", item);
             }
             else if(data.getStringExtra("result").equals("edit")){
                 ((ArrayAdapter)((ListView)findViewById(R.id.listView_transactionSummary)).getAdapter()).remove(((ArrayAdapter)((ListView)findViewById(R.id.listView_transactionSummary)).getAdapter()).getItem(position));

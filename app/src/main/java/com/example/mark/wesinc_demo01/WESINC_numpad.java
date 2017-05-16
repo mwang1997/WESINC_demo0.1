@@ -109,6 +109,7 @@ public class WESINC_numpad extends AppCompatActivity {
                     slider.putStringArrayListExtra("paidArrayList", paidArrayList);
                     slider.putExtra("total_payment", text_totalPayment.getText());
                     startActivityForResult(slider, SLIDER_REQUEST);
+                    return;
                 }
 
                 if(textView.getText().toString().charAt(textView.length() - 1) == 120){
@@ -123,6 +124,7 @@ public class WESINC_numpad extends AppCompatActivity {
                         tempAmountBool = false;
                         amount = 1;
                     }
+                    //Else wait for the x to happen before starting to append
                     if(textView.getText().toString().charAt(i) == 120){
                         tempAmountBool = false;
                     }
@@ -146,7 +148,7 @@ public class WESINC_numpad extends AppCompatActivity {
                         }
                     }
                 }
-
+                //How much to add on
                 additionalPayment = amount * price;
                 if(totalPayment + additionalPayment > 10000){
                     textView.setText("Amount is too large");
@@ -382,15 +384,29 @@ public class WESINC_numpad extends AppCompatActivity {
             setArrayList(data.getStringArrayListExtra("arraylist"));
             ((TextView)findViewById(R.id.textView)).setText(data.getStringExtra("arrayitem"));
             totalPaymentString = data.getStringExtra("total_payment");
+            StringBuilder sb = new StringBuilder();
+            for(int i = 0; i < totalPaymentString.length(); i++){
+                if((totalPaymentString.charAt(i) <= 57 && totalPaymentString.charAt(i) >= 48) || totalPaymentString.charAt(i) == 46){
+                    sb.append(totalPaymentString.charAt(i));
+                }
+            }
+            totalPayment = Double.parseDouble(sb.toString());
             ((TextView)findViewById(R.id.text_totalPayment)).setText(data.getStringExtra("total_payment"));
             tempMessage = false;
         }
         else if(requestCode == SLIDER_REQUEST && resultCode == RESULT_ADDITEM){
             setArrayList(data.getStringArrayListExtra("arraylist"));
             ((TextView)findViewById(R.id.text_totalPayment)).setText(data.getStringExtra("total_payment"));
+            totalPaymentString = data.getStringExtra("total_payment");
+            StringBuilder sb = new StringBuilder();
+            for(int i = 0; i < totalPaymentString.length(); i++){
+                if((totalPaymentString.charAt(i) <= 57 && totalPaymentString.charAt(i) >= 48) || totalPaymentString.charAt(i) == 46){
+                    sb.append(totalPaymentString.charAt(i));
+                }
+            }
+            totalPayment = Double.parseDouble(sb.toString());
             ((TextView)findViewById(R.id.textView)).setText("Number of Items x Price of Item");
-
-
+            tempMessage = true;
         }
     }
 
