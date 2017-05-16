@@ -6,6 +6,8 @@ import android.view.View;
 import android.content.*;
 import android.widget.*;
 
+import java.util.ArrayList;
+
 public class WESINC_editing extends AppCompatActivity {
 
     @Override
@@ -15,20 +17,29 @@ public class WESINC_editing extends AppCompatActivity {
 
         final Intent data = this.getIntent();
 
+        final ArrayList<String> arrayList = this.getIntent().getStringArrayListExtra("arraylist");
+
+        final int position = this.getIntent().getIntExtra("position", -1);
+
         TextView edited = (TextView)findViewById(R.id.textView_edited);
-        edited.setText(this.getIntent().getStringExtra("order_item"));
+        edited.setText(arrayList.get(position));
 
         TextView total_payment = (TextView)findViewById(R.id.textView_total_payment);
         total_payment.setText(this.getIntent().getStringExtra("total_payment"));
 
         final Button button_delete = (Button)findViewById(R.id.button_delete_editing);
         button_delete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    data.putExtra("result", "delete");
-                    setResult(RESULT_OK, data);
-                    finish();
-                }
+            @Override
+            public void onClick(View v) {
+                //What to do with the result
+                data.putExtra("result", "delete");
+                //The array list, returned
+                data.putExtra("arraylist", arrayList);
+                //Position of the item
+                data.putExtra("position", position);
+                setResult(RESULT_OK, data);
+                finish();
+            }
         });
 
         final Button button_edit = (Button)findViewById(R.id.button_edit);
@@ -36,6 +47,8 @@ public class WESINC_editing extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 data.putExtra("result", "edit");
+                data.putExtra("arraylist", arrayList);
+                data.putExtra("position", position);
                 setResult(RESULT_OK, data);
                 finish();
             }

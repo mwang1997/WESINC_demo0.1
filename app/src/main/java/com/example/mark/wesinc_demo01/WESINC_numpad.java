@@ -11,11 +11,13 @@ import java.util.ArrayList;
 public class WESINC_numpad extends AppCompatActivity {
     boolean tempMessage = true;
     double totalPayment = 0.0;
+    String totalPaymentString = "";
     Intent slider;
     ArrayList<String> paidArrayList = new ArrayList<String>();
-    ArrayList<Double> paidDoubleArrayList = new ArrayList<>();
+    //Results
+    final int RESULT_ADDITEM = 5;
+    final int RESULT_EDIT = 6;
     final int SLIDER_REQUEST = 2;
-    int result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,25 +109,6 @@ public class WESINC_numpad extends AppCompatActivity {
                     slider.putStringArrayListExtra("paidArrayList", paidArrayList);
                     slider.putExtra("total_payment", text_totalPayment.getText());
                     startActivityForResult(slider, SLIDER_REQUEST);
-                    textView.setText(paidArrayList.get(result));
-                    totalPayment -= paidDoubleArrayList.get(result);
-                    //Correcting for rounding errors
-                    if(totalPayment * 100 - (int)(totalPayment * 100) >= .5){
-                        totalPayment = ((int)(totalPayment * 100) + 1) / 100.0;
-                    }
-                    else{
-                        totalPayment = ((int)(totalPayment * 100)) / 100.0;
-                    }
-
-                    if(totalPayment * 10 - (int)(totalPayment * 10) == 0) {
-                        text_totalPayment.setText("$" + totalPayment + "0");
-                    }
-                    else{
-                        text_totalPayment.setText("$" + totalPayment);
-                    }
-                    paidArrayList.remove(result);
-                    paidDoubleArrayList.remove(result);
-                    return;
                 }
 
                 if(textView.getText().toString().charAt(textView.length() - 1) == 120){
@@ -181,11 +164,12 @@ public class WESINC_numpad extends AppCompatActivity {
                     }
 
                     if(totalPayment * 10 - (int)(totalPayment * 10) == 0) {
-                        text_totalPayment.setText("$" + totalPayment + "0");
+                        totalPaymentString = "$" + totalPayment + "0";
                     }
                     else{
-                        text_totalPayment.setText("$" + totalPayment);
+                       totalPaymentString = "$" + totalPayment;
                     }
+                    text_totalPayment.setText(totalPaymentString);
                     button_payment.setText("Checkout");
                     textView.setText("Number of Items x Price of Item");
                     tempMessage = true;
@@ -199,7 +183,6 @@ public class WESINC_numpad extends AppCompatActivity {
                     price = ((int)(price * 100)) / 100.0;
                 }
 
-                paidDoubleArrayList.add(amount * price);
                 paidArrayList.add(amount + " x " + price);
 
                 button_payment.setText("Checkout");
@@ -395,8 +378,23 @@ public class WESINC_numpad extends AppCompatActivity {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
-        if(requestCode == SLIDER_REQUEST && resultCode == RESULT_OK){
-            result = data.getIntExtra("result", -1);
+        if(requestCode == SLIDER_REQUEST && resultCode == RESULT_EDIT){
+            setArrayList(data.getStringArrayListExtra("arraylist"));
+            ((TextView)findViewById(R.id.textView)).setText(data.getStringExtra("arrayitem"));
+            totalPaymentString = data.getStringExtra("total_payment");
+            ((TextView)findViewById(R.id.text_totalPayment)).setText(data.getStringExtra("total_payment"));
+            tempMessage = false;
         }
+        else if(requestCode == SLIDER_REQUEST && resultCode == RESULT_ADDITEM){
+            setArrayList(data.getStringArrayListExtra("arraylist"));
+            ((TextView)findViewById(R.id.text_totalPayment)).setText(data.getStringExtra("total_payment"));
+            ((TextView)findViewById(R.id.textView)).setText("Number of Items x Price of Item");
+
+
+        }
+    }
+
+    private void setArrayList(ArrayList<String> arrayList){
+        paidArrayList = arrayList;
     }
 }
