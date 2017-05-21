@@ -135,11 +135,11 @@ public class WESINC_numpad extends AppCompatActivity {
                         decimalBool = true;
                     }
                     //If the tempAmountBool is true
-                    if(tempAmountBool && textView.getText().toString().charAt(i) >= 48 && textView.getText().toString().charAt(i) <= 57){
+                    if(tempAmountBool && textView.getText().toString().charAt(i) != 46 && textView.getText().toString().charAt(i) != 120){
                         amount *= 10;
                         amount += Character.getNumericValue(textView.getText().toString().charAt(i));
                     }
-                    if(!tempAmountBool && textView.getText().toString().charAt(i) >= 48 && textView.getText().toString().charAt(i) <= 57){
+                    if(!tempAmountBool && textView.getText().toString().charAt(i) != 46 && textView.getText().toString().charAt(i) != 120){
                         if (!decimalBool) {
                             price *= 10;
                             price += Character.getNumericValue(textView.getText().toString().charAt(i));
@@ -186,13 +186,8 @@ public class WESINC_numpad extends AppCompatActivity {
                 else{
                     price = ((int)(price * 100)) / 100.0;
                 }
-                //Make sure the price is right
-                if((int)(price * 10) != price * 10) {
-                    paidArrayList.add(amount + " x $" + price);
-                }
-                else{
-                    paidArrayList.add(amount + " x $" + price + "0");
-                }
+
+                paidArrayList.add(amount + " x " + price);
 
                 button_payment.setText("Checkout");
                 textView.setText("Number of Items x Price of Item");
