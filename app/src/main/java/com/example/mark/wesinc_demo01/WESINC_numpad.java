@@ -18,7 +18,6 @@ public class WESINC_numpad extends AppCompatActivity {
     final int RESULT_ADDITEM = 5;
     final int RESULT_EDIT = 6;
     final int SLIDER_REQUEST = 2;
-    final int CHECKOUT_REQUEST = 7;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,8 +83,7 @@ public class WESINC_numpad extends AppCompatActivity {
                     textView.setText(textView.getText().subSequence(0, textView.length() - 1));
                 }
                 else if(textView.length() == 1){
-                    textView.setText("Number of Items x Price of Item");
-                    tempMessage = true;
+                    textView.setText("");
                 }
             }
         });
@@ -376,17 +374,6 @@ public class WESINC_numpad extends AppCompatActivity {
                 if(!textView.getText().toString().equals("")) {
                     textView.append("0");
                 }
-            }
-        });
-
-        final Button button_checkout = (Button)findViewById(R.id.button_checkout);
-        button_checkout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent checkout = new Intent(context, WESINC_checkout.class);
-                checkout.putExtra("arraylist", paidArrayList);
-                checkout.putExtra("total_payment", totalPaymentString);
-                startActivityForResult(checkout, CHECKOUT_REQUEST);
             }
         });
     }
