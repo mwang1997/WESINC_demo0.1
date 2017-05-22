@@ -7,6 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:textSize="32dp"
+        android:textColor="#ffffff"
         android:gravity = "center"
         android:text="Amount x Price"
         />

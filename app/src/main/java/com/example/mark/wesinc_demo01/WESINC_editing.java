@@ -24,8 +24,8 @@ public class WESINC_editing extends AppCompatActivity {
         TextView edited = (TextView)findViewById(R.id.textView_edited);
         edited.setText(arrayList.get(position));
 
-        TextView total_payment = (TextView)findViewById(R.id.textView_total_payment);
-        total_payment.setText(this.getIntent().getStringExtra("total_payment"));
+        TextView text_totalPayment_editing = (TextView)findViewById(R.id.textView_total_payment_editing);
+        text_totalPayment_editing.setText(data.getStringExtra("total_payment"));
 
         final Button button_delete = (Button)findViewById(R.id.button_delete_editing);
         button_delete.setOnClickListener(new View.OnClickListener() {
@@ -50,6 +50,15 @@ public class WESINC_editing extends AppCompatActivity {
                 data.putExtra("arraylist", arrayList);
                 data.putExtra("position", position);
                 setResult(RESULT_OK, data);
+                finish();
+            }
+        });
+
+        final Button button_cancel = (Button)findViewById(R.id.button_cancel_editing);
+        button_cancel.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                setResult(RESULT_CANCELED);
                 finish();
             }
         });

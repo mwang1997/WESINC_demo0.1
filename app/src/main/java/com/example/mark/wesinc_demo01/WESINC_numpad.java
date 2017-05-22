@@ -27,7 +27,7 @@ public class WESINC_numpad extends AppCompatActivity {
 
         //Initializing current purchase
         final TextView textView = (TextView)findViewById(R.id.textView);
-        final TextView text_totalPayment = (TextView)findViewById(R.id.text_totalPayment);
+        final TextView text_totalPayment_numpad = (TextView)findViewById(R.id.text_totalPayment);
 
         //Clears the input
         final Button button_clear = (Button)findViewById(R.id.button_clear);
@@ -36,7 +36,7 @@ public class WESINC_numpad extends AppCompatActivity {
             public void onClick(View v) {
                 totalPayment = 0.0;
                 paidArrayList.clear();
-                text_totalPayment.setText("$0.00");
+                text_totalPayment_numpad.setText("$0.00");
                 textView.setText("Number of Items x Price of Item");
                 tempMessage = true;
                 button_clear.setVisibility(View.GONE);
@@ -107,7 +107,7 @@ public class WESINC_numpad extends AppCompatActivity {
                 else if(tempMessage && !paidArrayList.isEmpty()){
                     slider = new Intent(context, WESINC_slider.class);
                     slider.putStringArrayListExtra("paidArrayList", paidArrayList);
-                    slider.putExtra("total_payment", text_totalPayment.getText());
+                    slider.putExtra("total_payment", text_totalPayment_numpad.getText());
                     startActivityForResult(slider, SLIDER_REQUEST);
                     return;
                 }
@@ -171,7 +171,7 @@ public class WESINC_numpad extends AppCompatActivity {
                     else{
                        totalPaymentString = "$" + totalPayment;
                     }
-                    text_totalPayment.setText(totalPaymentString);
+                    text_totalPayment_numpad.setText(totalPaymentString);
                     button_payment.setText("Checkout");
                     textView.setText("Number of Items x Price of Item");
                     tempMessage = true;

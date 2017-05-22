@@ -18,6 +18,7 @@ public class WESINC_slider extends AppCompatActivity {
     final int EDITING_REQUEST = 1;
     final int RESULT_ADDITEM = 5;
     final int RESULT_EDIT = 6;
+    final int RESULT_CHECKLIST = 8;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +37,8 @@ public class WESINC_slider extends AppCompatActivity {
         final ListView transactionSummary = (ListView)findViewById(R.id.listView_transactionSummary);
 
         //TextView of total amount
-        TextView header = (TextView)findViewById(R.id.textView_header);
-        header.setText(total_payment);
+        TextView text_totalPayment_slider = (TextView)findViewById(R.id.textView_header);
+        text_totalPayment_slider.setText(total_payment);
 
         //Adapter of Strings
         final ArrayAdapter adapter = new ArrayAdapter<>(context, R.layout.list_items, R.id.list_item_layout, paidArrayList);
@@ -59,7 +60,19 @@ public class WESINC_slider extends AppCompatActivity {
             public void onClick(View v) {
                 data.putExtra("arraylist", paidArrayList);
                 data.putExtra("total_payment", total_payment);
-                setResult(RESULT_ADDITEM, data);
+                setResult(RESULT_CHECKLIST, data);
+                finish();
+            }
+        });
+
+        final Button button_checkout = (Button)findViewById(R.id.button_checkout);
+        button_checkout.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent checkout = new Intent(context, WESINC_checkout.class);
+                checkout.putExtra("arraylist", paidArrayList);
+                checkout.putExtra("total_payment", total_payment);
+                startActivityForResult(checkout, EDITING_REQUEST);
                 finish();
             }
         });
@@ -70,7 +83,7 @@ public class WESINC_slider extends AppCompatActivity {
         if(requestCode == EDITING_REQUEST && resultCode == RESULT_OK){
             Intent slider = this.getIntent();
             int position = data.getIntExtra("position", -1);
-            String total_payment_String;
+            String total_payment_String = "";
             StringBuilder sb = new StringBuilder();
             //Parsing
             for(int i = 0; i < total_payment.length(); i++){
@@ -117,7 +130,7 @@ public class WESINC_slider extends AppCompatActivity {
                 total_payment_String = "$" + totalPaymentValue + "0";
             }
             else{
-                total_payment_String = "$" + totalPaymentValue + "0";
+                total_payment_String = "$" + totalPaymentValue;
             }
             total_payment = total_payment_String;
             ((TextView)findViewById(R.id.textView_header)).setText(total_payment);

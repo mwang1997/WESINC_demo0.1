@@ -4,14 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background= "#CC2233"
     tools:context="com.example.mark.wesinc_demo01.WESINC_numpad">
 
 
     <TextView
         android:layout_width="296dp"
         android:layout_height="46dp"
-        android:gravity = "center"
+        android:textAlignment="center"
         android:text="Number of Items x Price of Item"
+        android:textSize="20dp"
+        android:textColor="#ffffff"
+        android:background="@drawable/input_textview_numpad"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -24,6 +28,8 @@
         android:layout_width="74dp"
         android:layout_height="46dp"
         android:text="9"
+        android:background = "@drawable/standard_grey_button"
+        android:textColor="#ffffff"
         android:layout_marginRight="74dp"
         app:layout_constraintRight_toRightOf="@+id/textView"
         android:layout_marginTop="-9dp"
@@ -36,6 +42,8 @@
         android:layout_marginRight="-4dp"
         android:layout_marginTop="0dp"
         android:text="8"
+        android:background = "@drawable/standard_grey_button"
+        android:textColor="#ffffff"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintRight_toLeftOf="@+id/button9" />
 
@@ -47,6 +55,8 @@
         android:layout_marginRight="-17dp"
         android:layout_marginTop="-9dp"
         android:text="7"
+        android:background = "@drawable/standard_grey_button"
+        android:textColor="#ffffff"
         app:layout_constraintRight_toLeftOf="@+id/button8"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -56,6 +66,8 @@
         android:layout_height="46dp"
         android:layout_marginTop="-1dp"
         android:text="6"
+        android:background = "@drawable/standard_grey_button"
+        android:textColor="#ffffff"
         app:layout_constraintTop_toBottomOf="@+id/button9"
         app:layout_constraintLeft_toRightOf="@+id/button5"
         android:layout_marginLeft="-4dp" />
@@ -65,6 +77,8 @@
         android:layout_width="74dp"
         android:layout_height="46dp"
         android:text="5"
+        android:background = "@drawable/standard_grey_button"
+        android:textColor="#ffffff"
         app:layout_constraintLeft_toRightOf="@+id/button4"
         android:layout_marginLeft="-4dp"
         android:layout_marginTop="-1dp"
@@ -77,6 +91,8 @@
         android:layout_marginLeft="-4dp"
         android:layout_marginTop="-1dp"
         android:text="4"
+        android:background = "@drawable/standard_grey_button"
+        android:textColor="#ffffff"
         app:layout_constraintLeft_toLeftOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/button7" />
 
@@ -86,6 +102,8 @@
         android:layout_width="74dp"
         android:layout_height="46dp"
         android:text="3"
+        android:background = "@drawable/standard_grey_button"
+        android:textColor="#ffffff"
         android:layout_marginTop="-2dp"
         app:layout_constraintTop_toBottomOf="@+id/button6"
         app:layout_constraintLeft_toRightOf="@+id/button2"
@@ -96,6 +114,8 @@
         android:layout_width="74dp"
         android:layout_height="46dp"
         android:text="2"
+        android:background = "@drawable/standard_grey_button"
+        android:textColor="#ffffff"
         app:layout_constraintLeft_toRightOf="@+id/button1"
         android:layout_marginLeft="-4dp"
         android:layout_marginTop="-2dp"
@@ -107,6 +127,8 @@
         android:layout_height="46dp"
         android:layout_marginLeft="-4dp"
         android:text="1"
+        android:background = "@drawable/standard_grey_button"
+        android:textColor="#ffffff"
         app:layout_constraintLeft_toLeftOf="@+id/textView"
         android:layout_marginTop="-2dp"
         app:layout_constraintTop_toBottomOf="@+id/button4" />
@@ -117,6 +139,8 @@
         android:layout_height="46dp"
         android:text="0"
         android:layout_marginLeft="0dp"
+        android:background = "@drawable/standard_grey_button"
+        android:textColor="#ffffff"
         app:layout_constraintLeft_toLeftOf="@+id/button1"
         android:layout_marginTop="-8dp"
         app:layout_constraintTop_toBottomOf="@+id/button1" />
@@ -126,6 +150,8 @@
         android:layout_width="74dp"
         android:layout_height="46dp"
         android:text="."
+        android:background = "@drawable/standard_grey_button"
+        android:textColor="#ffffff"
         app:layout_constraintLeft_toRightOf="@+id/button0"
         android:layout_marginLeft="0dp"
         android:layout_marginTop="0dp"
@@ -136,6 +162,8 @@
         android:layout_width="74dp"
         android:layout_height="92dp"
         android:text="Delete"
+        android:background = "@drawable/standard_grey_button"
+        android:textColor="#ffffff"
         android:layout_marginTop="0dp"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         android:layout_marginRight="-9dp"
@@ -147,6 +175,8 @@
         android:layout_height="92dp"
         android:layout_marginRight="-14dp"
         android:text="X"
+        android:background = "@drawable/standard_grey_button"
+        android:textColor="#ffffff"
         app:layout_constraintRight_toRightOf="@+id/textView"
         android:layout_marginTop="0dp"
         app:layout_constraintTop_toBottomOf="@+id/button_delete" />
@@ -156,6 +186,8 @@
         android:layout_width="296dp"
         android:layout_height="46dp"
         android:text="Add to Total"
+        android:textColor="#ffffff"
+        android:background="@drawable/checkout_button1_numpad"
         android:layout_marginTop="0dp"
         app:layout_constraintTop_toBottomOf="@+id/button_x"
         android:layout_marginLeft="0dp"
@@ -166,26 +198,44 @@
 
     <TextView
         android:id="@+id/text_totalPayment"
-        android:layout_width="wrap_content"
+        android:layout_width="296dp"
         android:layout_height="wrap_content"
         android:text="$0.00"
-        android:layout_marginBottom="56dp"
+        android:textColor="#ffffff"
+        android:textSize="50dp"
+        android:textAlignment="center"
+        android:layout_marginBottom="30dp"
         app:layout_constraintBottom_toTopOf="@+id/textView"
-        android:layout_marginRight="130dp"
-        app:layout_constraintRight_toRightOf="@+id/textView"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="@+id/textView"
-        app:layout_constraintHorizontal_bias="1.0" />
+        android:layout_marginLeft="-44dp"
+        app:layout_constraintLeft_toLeftOf="@+id/textView" />
 
     <Button
         android:id="@+id/button_clear"
         android:layout_width="46dp"
         android:layout_height="46dp"
         android:text="X"
+        android:background="@null"
+        android:textColor="#ffffff"
         android:visibility="gone"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="8dp"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/total_numpad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total"
+        android:textColor="#ffffff"
+        android:textSize="20dp"
+        android:textAlignment="center"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="@+id/text_totalPayment"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="@+id/text_totalPayment"
+        android:layout_marginBottom="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/text_totalPayment"
+        app:layout_constraintHorizontal_bias="0.492" />
 
 </android.support.constraint.ConstraintLayout>
