@@ -50,6 +50,7 @@ public class WESINC_slider extends AppCompatActivity {
                 Intent editing = new Intent(context, WESINC_editing.class);
                 editing.putStringArrayListExtra("arraylist", paidArrayList);
                 editing.putExtra("position", position);
+                editing.putExtra("total_payment", total_payment);
                 startActivityForResult(editing, EDITING_REQUEST);
             }
         });
@@ -60,7 +61,7 @@ public class WESINC_slider extends AppCompatActivity {
             public void onClick(View v) {
                 data.putExtra("arraylist", paidArrayList);
                 data.putExtra("total_payment", total_payment);
-                setResult(RESULT_CHECKLIST, data);
+                setResult(RESULT_ADDITEM, data);
                 finish();
             }
         });
