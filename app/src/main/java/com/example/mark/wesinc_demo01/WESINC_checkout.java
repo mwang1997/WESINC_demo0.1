@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.nfc.tech.*;
 import android.nfc.*;
+import android.view.View;
 import android.widget.Toast;
 import android.content.*;
 import android.app.*;
@@ -37,6 +38,28 @@ public class WESINC_checkout extends AppCompatActivity {
         TextView text_totalPayment_checkout = (TextView)findViewById(R.id.textView_totalPayment_checkout);
         text_totalPayment_checkout.setText(total_payment);
 
+        final Button tryagain_button = (Button)findViewById(R.id.tryagain_button);
+        final Button editsale_button = (Button)findViewById(R.id.editsale_button);
+        final Button cancel_button = (Button)findViewById(R.id.button_cancel_checkout);
+        cancel_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cancel_button.setVisibility(View.GONE);
+                tryagain_button.setVisibility(View.VISIBLE);
+                editsale_button.setVisibility(View.VISIBLE);
+
+            }
+        });
+
+        tryagain_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                cancel_button.setVisibility(View.VISIBLE);
+                tryagain_button.setVisibility(View.GONE);
+                editsale_button.setVisibility(View.GONE);
+            }
+        });
+
         fileUriCallback = new FileUriCallback();
 
         if(nfcAdapter == null || !nfcAdapter.isEnabled()){
@@ -46,7 +69,6 @@ public class WESINC_checkout extends AppCompatActivity {
         }
 
         nfcAdapter.setBeamPushUrisCallback(fileUriCallback, this);
-
     }
 
     private class FileUriCallback implements NfcAdapter.CreateBeamUrisCallback{
@@ -54,6 +76,10 @@ public class WESINC_checkout extends AppCompatActivity {
         public Uri[] createBeamUris(NfcEvent nfcEvent){
             return new Uri[]{data.getData()};
         }
+    }
+
+    private void switchVisibilty(){
+
     }
 
 
