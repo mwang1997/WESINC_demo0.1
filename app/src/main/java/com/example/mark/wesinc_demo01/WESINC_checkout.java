@@ -35,8 +35,11 @@ public class WESINC_checkout extends AppCompatActivity {
 
         String total_payment = data.getStringExtra("total_payment");
 
-        TextView text_totalPayment_checkout = (TextView)findViewById(R.id.textView_totalPayment_checkout);
+        TextView text_totalPayment_checkout = (TextView)findViewById(R.id.textView_total_payment_checkout);
         text_totalPayment_checkout.setText(total_payment);
+
+        final TextView message = (TextView)findViewById(R.id.textView_description);
+
 
         final Button tryagain_button = (Button)findViewById(R.id.tryagain_button);
         final Button editsale_button = (Button)findViewById(R.id.editsale_button);
@@ -47,6 +50,7 @@ public class WESINC_checkout extends AppCompatActivity {
                 cancel_button.setVisibility(View.GONE);
                 tryagain_button.setVisibility(View.VISIBLE);
                 editsale_button.setVisibility(View.VISIBLE);
+                message.setText("You have canceled the transaction.");
 
             }
         });
@@ -57,6 +61,7 @@ public class WESINC_checkout extends AppCompatActivity {
                 cancel_button.setVisibility(View.VISIBLE);
                 tryagain_button.setVisibility(View.GONE);
                 editsale_button.setVisibility(View.GONE);
+                message.setText("Waiting for      customer to tap their NFC device to the console ...");
             }
         });
 
